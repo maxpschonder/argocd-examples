@@ -1,0 +1,3 @@
+namePrefix:
+  - path: spec/rules/host
+    kind: Ingress
