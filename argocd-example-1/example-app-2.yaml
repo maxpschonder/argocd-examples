@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-example-1-app-2
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: example-app-2
+    repoURL: https://github.com/maxpschonder/argocd-examples.git
+    targetRevision: main
+    helm:
+      values: |
+        replicaCount: 3
+  destination:
+    namespace: argocd-example-1
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
