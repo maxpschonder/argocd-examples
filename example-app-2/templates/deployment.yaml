@@ -19,8 +19,14 @@ spec:
           image: nginx:latest
           ports:
             - containerPort: 80
-          {{- if .Values.global.environmentName }}
           env:
+          {{- if .Values.global.environmentName }}
             - name: ENVIRONMENT_NAME
               value: {{ .Values.global.environmentName }}
+          {{- end }}
+            - name: LOG_LEVEL
+          {{- if .Values.global.debug }}
+              value: debug
+          {{- else }}
+              value: info
           {{- end }}
