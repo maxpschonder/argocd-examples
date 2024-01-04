@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: base-app
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/maxpschonder/argocd-examples.git
+    path: base-argocd/apps
+    targetRevision: k8s-training
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

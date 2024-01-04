@@ -1,4 +1,4 @@
 namespace: argocd-example-2
 targetRevision: main
 environmentName: dev
-debug: false
+debug: true

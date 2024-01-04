@@ -1,23 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-example-1-app-2
+  name: base-argocd-example-app-1
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: example-app-2
+    path: example-app-1
     repoURL: https://github.com/maxpschonder/argocd-examples.git
-    targetRevision: main
-    # helm:
-    #   values: |
-    #     replicaCount: 3
-    # helm:
-      # valueFiles: 
-      # - values-{{ .Values.global.environment }}.yaml
-      # - values.yaml
+    targetRevision: k8s-training
   destination:
     namespace: argocd-example-1
     server: https://kubernetes.default.svc
