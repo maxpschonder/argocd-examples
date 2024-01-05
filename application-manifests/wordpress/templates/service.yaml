@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-wordpress
+  labels:
+    app: {{ .Release.Name }}-wordpress
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: {{ .Release.Name }}-wordpress
+    tier: frontend
+  type: LoadBalancer

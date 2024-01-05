@@ -1,24 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: base-app
+  name: {{ .Release.Name }}-wordpress
+  namespace: {{ .Values.global.namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
+    path: application-manifests/wordpress
     repoURL: https://github.com/maxpschonder/argocd-examples.git
-    path: base-argocd/apps
-    targetRevision: k8s-training
+    targetRevision: {{ .Values.global.targetRevision }}
     helm:
       valueFiles:
-        - values-{{ .Values.global.cluster.environment }}.yaml
+        - values-{{ .Values.global.environmentName }}.yaml
       values: |
         --- #yaml
         global:
 {{ toYaml .Values.global | trim | indent 10 }}
         #!yaml
   destination:
+    namespace: wordpress
     server: https://kubernetes.default.svc
-    namespace: argocd
+   # Dependencies on other applications
+  # dependencies:
+  # - name: {{ .Release.Name }}-mysql
+  #   namespace: wordpress
   syncPolicy:
     automated:
       selfHeal: true

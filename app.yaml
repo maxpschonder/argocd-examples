@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: base-app
-  namespace: applications
+  namespace: argocd # This is the namespace where ArgoCD is installed
 spec:
   project: default
   source:
@@ -12,10 +12,9 @@ spec:
     helm:
       values: |
         global:
-          namespace: applications
+          namespace: argocd
           targetRevision: k8s-training
-          environmentName: dev
-          debug: true
+          environmentName: prod
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
