@@ -22,10 +22,10 @@ spec:
   destination:
     namespace: wordpress
     server: https://kubernetes.default.svc
-   # Dependencies on other applications
-  # dependencies:
-  # - name: {{ .Release.Name }}-mysql
-  #   namespace: wordpress
+  # Dependencies on other applications
+  dependencies:
+  - name: {{ .Release.Name }}-mysql
+    namespace: wordpress
   syncPolicy:
     automated:
       selfHeal: true
