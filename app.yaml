@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: base-app
   namespace: argocd # This is the namespace where ArgoCD is installed
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -14,7 +16,7 @@ spec:
         global:
           namespace: argocd
           targetRevision: k8s-training
-          environmentName: prod
+          environmentName: dev
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
