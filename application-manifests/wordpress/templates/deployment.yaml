@@ -10,7 +10,7 @@ spec:
       app: {{ .Release.Name }}-wordpress
       tier: frontend
   strategy:
-    type: Recreate
+    type: {{ .Values.deploymentStrategy }}
   template:
     metadata:
       labels:
