@@ -5,6 +5,8 @@ metadata:
   namespace: {{ .Values.global.namespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
@@ -23,9 +25,6 @@ spec:
     namespace: wordpress
     server: https://kubernetes.default.svc
   # Dependencies on other applications
-  dependencies:
-  - name: {{ .Release.Name }}-mysql
-    namespace: wordpress
   syncPolicy:
     automated:
       selfHeal: true
