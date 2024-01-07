@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: base-app
+  namespace: argocd # This is the namespace where ArgoCD is installed
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/maxpschonder/argocd-examples.git
+    path: exercises/exercise-3/applications
+    targetRevision: exercises
+    helm:
+      values: |
+        global:
+          namespace: argocd
+          targetRevision: exercises
+          environmentName: 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

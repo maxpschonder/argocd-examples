@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}-microservice-1
+  namespace: {{ .Values.global.namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: exercises/exercise-3/charts/microservice-1
+    repoURL: https://github.com/maxpschonder/argocd-examples.git
+    targetRevision: {{ .Values.global.targetRevision }}
+    helm:
+      valueFiles:
+      {{- if .Values.global.environmentName }}
+        - values-{{ .Values.global.environmentName }}.yaml
+      {{- end }}
+      values: |
+        --- #yaml
+        global:
+{{ toYaml .Values.global | trim | indent 10 }}
+        #!yaml
+  destination:
+    namespace: microservice-1
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
