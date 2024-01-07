@@ -1,3 +1,4 @@
-global: {}
 replicaCount: 3
-environmentName: dev
+global:
+  environmentName: dev
+  debug: false

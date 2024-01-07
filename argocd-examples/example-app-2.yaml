@@ -10,14 +10,14 @@ spec:
   source:
     path: example-app-2
     repoURL: https://github.com/maxpschonder/argocd-examples.git
-    targetRevision: main
+    targetRevision: k8s-training
     # helm:
     #   values: |
-    #     replicaCount: 3
-    # helm:
+    #     global:
+    #       environmentName: dev
+    #       debug: false
       # valueFiles: 
-      # - values-{{ .Values.global.environment }}.yaml
-      # - values.yaml
+      # - values-dev.yaml
   destination:
     namespace: argocd-example-1
     server: https://kubernetes.default.svc
