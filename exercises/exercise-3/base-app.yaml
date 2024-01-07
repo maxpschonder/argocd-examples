@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: base-app-YOURNAME
+  name: base-app-{YOURNAME}
   namespace: argocd # This is the namespace where ArgoCD is installed
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -18,7 +18,7 @@ spec:
           targetRevision: exercises
           environmentName: 
         microservices:
-          identifier: YOURNAME
+          identifier: {YOURNAME}
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

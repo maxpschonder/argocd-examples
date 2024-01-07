@@ -17,17 +17,6 @@ spec:
         app: {{ .Release.Name }}-mysql
         tier: backend
     spec:
-      # livenessProbe:
-      #     exec:
-      #       command: ["mysqladmin", "ping"]
-      #     initialDelaySeconds: 30
-      #     periodSeconds: 10
-      #     timeoutSeconds: 5
-      # readinessProbe:
-      #     exec:
-      #       command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
-      #     initialDelaySeconds: 5
-      #     periodSeconds: 2
       containers:
       - image: mysql:8.0
         name: mysql
