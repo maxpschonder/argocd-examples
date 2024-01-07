@@ -22,7 +22,7 @@ spec:
 {{ toYaml .Values.global | trim | indent 10 }}
         #!yaml
   destination:
-    namespace: microservice-1
+    namespace: microservice-1-{{ .Values.microservices.identifier }}
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
