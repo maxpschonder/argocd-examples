@@ -21,6 +21,8 @@ b) Change the ReplicationCount in the values file and apply the changes via a ne
 
 ## Exercise 3 - App of apps
 
+Change `{YOURNAME}` in the `base-app.yaml` located inside the exercises-3 folder to your name before attempting the next steps.
+
 a) Apply the base-app located inside the `exercise-3` folder as is. Once deployed, have a look at the values of the environment variables of one of the containers inside a microservices pod. What is the value? Can you explain your findings?  
 
 b1) Set the value for the `environmentName` to "dev" inside the base-app. Re-apply the base app to the cluster. Monitor the change inside ArgoCD. Open the Live Manifest of one of the pods and have a look at the environment variables again. What has changed?  
