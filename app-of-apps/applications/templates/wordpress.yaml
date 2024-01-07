@@ -1,25 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: base-app
-  namespace: argocd # This is the namespace where ArgoCD is installed
+  name: {{ .Release.Name }}-wordpress
+  namespace: {{ .Values.global.namespace }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
+    path: app-of-apps/charts/wordpress
     repoURL: https://github.com/maxpschonder/argocd-examples.git
-    path: base-manifests
-    targetRevision: k8s-training
+    targetRevision: {{ .Values.global.targetRevision }}
     helm:
+      valueFiles:
+        - values-{{ .Values.global.environmentName }}.yaml
       values: |
+        --- #yaml
         global:
-          namespace: argocd
-          targetRevision: k8s-training
-          environmentName: dev
+{{ toYaml .Values.global | trim | indent 10 }}
+        #!yaml
   destination:
+    namespace: wordpress
     server: https://kubernetes.default.svc
-    namespace: argocd
   syncPolicy:
     automated:
       selfHeal: true

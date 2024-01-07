@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    path: application-manifests/example-app-2
+    path: app-of-apps/charts/example-app-2
     repoURL: https://github.com/maxpschonder/argocd-examples.git
     targetRevision: {{ .Values.global.targetRevision }}
     helm:
