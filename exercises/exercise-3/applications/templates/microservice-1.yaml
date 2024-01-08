@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ .Values.global.project }}
   source:
     path: exercises/exercise-3/charts/microservice-1
     repoURL: https://github.com/maxpschonder/argocd-examples.git
