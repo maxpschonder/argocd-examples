@@ -1,9 +1,9 @@
 # ArgoCD exercises
 
-Note: Keep in mind that ArgoCD synchronises changes from a branch defined inside `targetRevision`. For the following exercises, the target branch is set to `exercises`. Please push all changes you make to the aforementioned branch.
+Note: Keep in mind that ArgoCD synchronises changes from a branch defined inside `targetRevision`. Every participant should create their own target branch to synchronise changes from. Please create a branch from the `k8s-training` branch and give it a unique name/identifier (e.g your name). Moving forward, please make sure you indicate your target branch inside the Application definition where applicable.
 
 ## Exercise 1 - Basics
-a) Create an ArgoCD Application for the Kubernetes manifests located inside the exercise-1 folder.  
+a) Create an ArgoCD-Application-Manifest for the Kubernetes manifests located inside the exercise-1 folder and set its name to `exercise-1-yourName`. Ensure you set the targetRevision to your target branch. The project is `exercise-1`.
 
 b) Apply the application to a new namespace `exercise-1` in Argo.  
 
@@ -15,7 +15,7 @@ e) Roll back the changes via the ArgoCD UI.
 
 ## Exercise 2 - Helm
 
-a) Next, you will practise using an ArgoCD application to deploy the K8s-manifests used in the previous example as a Helm Chart. You will find the Helm related setup in the `exercise-2` folder. Create a new ArgoCD-Application-Manifest and deploy the Helm chart to a new namespace `exercise-2`.  
+a) Next, you will practise using an ArgoCD application to deploy the K8s-manifests used in the previous example as a Helm Chart. You will find the Helm related setup in the `exercise-2` folder. Create a new ArgoCD-Application-Manifest (`exercise-2-yourName`), set the project value to `exercise-2` and deploy the Helm chart to a new namespace `exercise-2`.
 
 b) Change the ReplicationCount in the values file and apply the changes via a new Commit. 
 
