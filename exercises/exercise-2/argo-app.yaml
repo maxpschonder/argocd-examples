@@ -11,13 +11,13 @@ spec:
     path: exercises/exercise-2
     repoURL: https://github.com/maxpschonder/argocd-examples.git
     targetRevision: exercise-1
-    # helm:
+    helm:
     #   values: |
     #     global:
     #       environmentName: dev
     #       debug: false
-      # valueFiles:
-      # - values-dev.yaml
+      valueFiles:
+      - values-dev.yaml
   destination:
     namespace: exercise-2
     server: https://kubernetes.default.svc
