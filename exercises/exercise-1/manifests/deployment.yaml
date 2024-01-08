@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:latest
+          image: no-existing:latest
           ports:
             - containerPort: 80
               protocol: TCP
