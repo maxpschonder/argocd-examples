@@ -10,7 +10,7 @@ spec:
   source:
     path: exercises/exercise-2
     repoURL: https://github.com/maxpschonder/argocd-examples.git
-    targetRevision: k8s-training
+    targetRevision: exercise-2
     # helm:
     #   values: |
     #     global:
