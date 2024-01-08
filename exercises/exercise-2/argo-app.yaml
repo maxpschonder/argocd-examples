@@ -10,7 +10,7 @@ spec:
   source:
     path: exercises/exercise-2
     repoURL: https://github.com/maxpschonder/argocd-examples.git
-    targetRevision: exercise-2
+    targetRevision: exercise-1
     # helm:
     #   values: |
     #     global:
@@ -19,7 +19,7 @@ spec:
       # valueFiles:
       # - values-dev.yaml
   destination:
-    namespace: exercises/exercise-2
+    namespace: exercise-2
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
