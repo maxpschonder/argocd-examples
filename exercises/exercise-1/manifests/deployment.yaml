@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: four-nginx
-  replicas: 3
+  replicas: 4
   template:
     metadata:
       labels:
