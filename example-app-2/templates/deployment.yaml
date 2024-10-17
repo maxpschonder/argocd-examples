@@ -20,13 +20,12 @@ spec:
           ports:
             - containerPort: 80
           env:
-          {{- if .Values.global.environmentName }}
-            - name: ENVIRONMENT_NAME
-              value: {{ .Values.global.environmentName }}
-          {{- end }}
-            - name: LOG_LEVEL
-          {{- if .Values.global.debug }}
-              value: debug
-          {{- else }}
-              value: info
-          {{- end }}
+            {{- if .Values.global.domain }}
+            - name: ENVIRONMENT_DOMAIN
+              value: {{ .Values.global.domain }}
+            {{- end }}
+            {{- if .Values.local.nameOverride }}
+            - name: NAME_OVERRIDE
+              value: {{ .Values.local.nameOverride }}
+            {{- end }}
+
